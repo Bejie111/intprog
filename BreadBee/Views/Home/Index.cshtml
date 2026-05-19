@@ -1,87 +1,297 @@
 ﻿@model List<BreadBee.Models.Product>
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Home - BreadBee";
 }
 
-<!-- HERO SECTION -->
-<div style="background:linear-gradient(to right, #ffcc70, #ff9f1c);
-    padding:60px; border-radius:10px; color:white;">
+@section Styles {
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=Nunito:wght=400;600;700&display=swap" rel="stylesheet">
 
-    <h1 style="font-size:50px; font-weight:bold;">
-        🍞 Welcome to BreadBee
-    </h1>
+    <!-- Custom Page Stylesheet -->
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}
 
-    <p style="font-size:18px;">
-        Freshly baked bread, pastries, and snacks delivered with sweetness 🐝
-    </p>
-
-    <a href="/Product/Products" class="btn btn-dark mt-3">
-        Order Now
-    </a>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">🍯 Freshly Baked Daily</div>
+    <h1>🍞 Welcome to BreadBee</h1>
+    <p>Freshly baked bread, pastries, and snacks — crafted with love and delivered to your door with sweetness 🐝</p>
+    <div class="hero-btns">
+        <a asp-controller="Product" asp-action="Products" class="btn-primary">🛒 Order Now</a>
+        <a asp-controller="Product" asp-action="Products" class="btn-outline">Browse All Breads</a>
+    </div>
 </div>
 
-<br />
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stat">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Bread Varieties</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">1,200+</div>
+        <div class="stat-label">Happy Customers</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">Daily</div>
+        <div class="stat-label">Fresh Baked</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number">4.9 ⭐</div>
+        <div class="stat-label">Average Rating</div>
+    </div>
+</div>
 
 <!-- FEATURED PRODUCTS -->
-<h2>🔥 Featured Products</h2>
+<div class="products-section">
+    <div class="section-header">
+        <span style="font-size:1.8rem">🔥</span>
+        <h2>Featured Products</h2>
+        <span class="section-tag">Best Sellers</span>
+    </div>
 
-<div class="row">
-
-    @foreach (var item in Model.Take(6))
-    {
-        <div class="col-md-4 mb-4">
-
-            <div class="card shadow-sm p-2">
-
-                <img src="@item.ImageUrl"
-                     style="height:180px; object-fit:cover;" />
-
-                <h5 class="mt-2">@item.Name</h5>
-
-                <p>₱@item.Price</p>
-
+    <div class="featured-grid">
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&q=80" alt="Cheese Bread">
+                <span class="product-badge">⭐ Popular</span>
             </div>
-
+            <div class="product-body">
+                <div class="product-name">Cheese Bread</div>
+                <div class="product-desc">Soft, fluffy bread stuffed with rich, melted cheese filling</div>
+                <div class="product-footer">
+                    <div class="product-price">₱25.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
         </div>
-    }
 
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&q=80" alt="Chocolate Donut">
+                <span class="product-badge">🍫 Sweet</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Chocolate Donut</div>
+                <div class="product-desc">Glazed ring donut smothered in rich dark chocolate coating</div>
+                <div class="product-footer">
+                    <div class="product-price">₱30.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80" alt="Croissant">
+                <span class="product-badge">🥐 Classic</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Croissant</div>
+                <div class="product-desc">Flaky, buttery layers baked to golden-brown perfection</div>
+                <div class="product-footer">
+                    <div class="product-price">₱40.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80" alt="Pandesal">
+                <span class="product-badge">🇵🇭 Local Fave</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Pandesal</div>
+                <div class="product-desc">Classic Filipino soft roll with a light breadcrumb crust</div>
+                <div class="product-footer">
+                    <div class="product-price">₱8.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400&q=80" alt="Ensaymada">
+                <span class="product-badge">✨ Creamy</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Ensaymada</div>
+                <div class="product-desc">Soft brioche coiled bun topped with butter, sugar, and cheese</div>
+                <div class="product-footer">
+                    <div class="product-price">₱35.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&q=80" alt="Cinnamon Roll">
+                <span class="product-badge">🌀 New</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Cinnamon Roll</div>
+                <div class="product-desc">Swirled with cinnamon sugar and drizzled in cream cheese icing</div>
+                <div class="product-footer">
+                    <div class="product-price">₱55.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1586444248897-a00f00d4a2c7?w=400&q=80" alt="Sourdough">
+                <span class="product-badge">🌾 Artisan</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Sourdough Loaf</div>
+                <div class="product-desc">Naturally leavened with a crispy crust and chewy tangy crumb</div>
+                <div class="product-footer">
+                    <div class="product-price">₱120.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&q=80" alt="Ube Bread">
+                <span class="product-badge">💜 Pinoy</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Ube Bread</div>
+                <div class="product-desc">Vibrant purple yam bread with sweet ube halaya swirl inside</div>
+                <div class="product-footer">
+                    <div class="product-price">₱45.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img-wrap">
+                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80" alt="Blueberry Muffin">
+                <span class="product-badge">🫐 Fresh</span>
+            </div>
+            <div class="product-body">
+                <div class="product-name">Blueberry Muffin</div>
+                <div class="product-desc">Moist muffin bursting with juicy blueberries in every bite</div>
+                <div class="product-footer">
+                    <div class="product-price">₱38.00</div>
+                    <a asp-controller="Product" asp-action="Products" class="btn-cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<hr />
-
-<!-- CATEGORIES SECTION -->
-<h2>📦 Shop by Category</h2>
-
-<div class="row text-center">
-
-    <div class="col-md-3">
-        <div class="p-3 bg-light rounded">🍞 Bread</div>
+<!-- SHOP BY CATEGORY -->
+<div class="category-section">
+    <div class="section-header" style="padding:0; margin-bottom:28px;">
+        <span style="font-size:1.8rem">📦</span>
+        <h2>Shop by Category</h2>
     </div>
-
-    <div class="col-md-3">
-        <div class="p-3 bg-light rounded">🍰 Cakes</div>
+    <div class="category-grid">
+        <a asp-controller="Product" asp-action="Products" class="category-card">
+            <div class="cat-icon">🍞</div>
+            <div class="cat-name">Breads</div>
+            <div class="cat-count">12 items</div>
+        </a>
+        <a asp-controller="Product" asp-action="Products" class="category-card">
+            <div class="cat-icon">🥐</div>
+            <div class="cat-name">Pastries</div>
+            <div class="cat-count">8 items</div>
+        </a>
+        <a asp-controller="Product" asp-action="Products" class="category-card">
+            <div class="cat-icon">🍩</div>
+            <div class="cat-name">Donuts</div>
+            <div class="cat-count">6 items</div>
+        </a>
+        <a asp-controller="Product" asp-action="Products" class="category-card">
+            <div class="cat-icon">🧁</div>
+            <div class="cat-name">Muffins & Cakes</div>
+            <div class="cat-count">10 items</div>
+        </a>
+        <a asp-controller="Product" asp-action="Products" class="category-card">
+            <div class="cat-icon">🥖</div>
+            <div class="cat-name">Loaves</div>
+            <div class="cat-count">5 items</div>
+        </a>
+        <a asp-controller="Product" asp-action="Products" class="category-card">
+            <div class="cat-icon">🍪</div>
+            <div class="cat-name">Cookies & Snacks</div>
+            <div class="cat-count">9 items</div>
+        </a>
     </div>
-
-    <div class="col-md-3">
-        <div class="p-3 bg-light rounded">🥐 Pastries</div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="p-3 bg-light rounded">☕ Drinks</div>
-    </div>
-
 </div>
 
-<br />
+<!-- WHY BREADBEE -->
+<div class="why-banner">
+    <h2>Why Choose BreadBee? 🐝</h2>
+    <div class="why-grid">
+        <div class="why-item">
+            <div class="why-icon">🌅</div>
+            <div class="why-text">
+                <h4>Baked Fresh Daily</h4>
+                <p>Every item is baked fresh every morning so you always get the best quality.</p>
+            </div>
+        </div>
+        <div class="why-item">
+            <div class="why-icon">🚀</div>
+            <div class="why-text">
+                <h4>Fast Delivery</h4>
+                <p>We deliver straight to your door so your bread arrives warm and fresh.</p>
+            </div>
+        </div>
+        <div class="why-item">
+            <div class="why-icon">🌾</div>
+            <div class="why-text">
+                <h4>Quality Ingredients</h4>
+                <p>We use only the finest local and imported ingredients in all our products.</p>
+            </div>
+        </div>
+        <div class="why-item">
+            <div class="why-icon">💛</div>
+            <div class="why-text">
+                <h4>Made with Love</h4>
+                <p>Every loaf, roll, and pastry is handcrafted by our passionate bakers.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- CALL TO ACTION -->
-<div class="text-center p-5 bg-warning rounded">
+<!-- TESTIMONIALS -->
+<div class="testimonials-section">
+    <div class="section-header" style="padding:0; margin-bottom:28px;">
+        <span style="font-size:1.8rem">💬</span>
+        <h2>What Customers Say</h2>
+    </div>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"The cheese bread is absolutely divine! Soft, cheesy, and perfectly baked. I order every week!"</div>
+            <div class="testimonial-author">— Maria S., Cebu City</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"BreadBee's ensaymada is the best I've ever had. Delivered fresh and warm — amazing service!"</div>
+            <div class="testimonial-author">— Carlo R., Mandaue</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"The cinnamon rolls are absolutely sinful. My whole family loves them. Will definitely order again!"</div>
+            <div class="testimonial-author">— Liza T., Lapu-Lapu</div>
+        </div>
+    </div>
+</div>
 
-    <h2>Hungry? Let BreadBee serve you 🐝</h2>
-
-    <a href="/Product/Products" class="btn btn-dark mt-2">
-        Browse Menu
-    </a>
-
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+    <h2>Ready to Order? 🛒</h2>
+    <p>Browse our full selection of freshly baked goodies and place your order today!</p>
+    <a asp-controller="Product" asp-action="Products" class="btn-primary" style="background:var(--brown);">Shop All Products →</a>
 </div>

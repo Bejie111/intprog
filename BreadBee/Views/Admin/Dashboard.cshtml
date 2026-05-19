@@ -1,68 +1,121 @@
-﻿@{
+﻿@model IEnumerable<dynamic>
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
 }
-<h1>Admin Dashboard</h1>
 
-<div class="mb-3">
-    <h4>Total Orders: @ViewBag.TotalOrders</h4>
-    <h4>Total Sales: ₱@ViewBag.TotalSales</h4>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-dark m-0">Overview Dashboard</h2>
+    <span class="badge bg-white text-dark border shadow-sm px-3 py-2 fw-semibold">
+        <i class="bi bi-calendar3 text-warning me-2"></i> Live Updates
+    </span>
 </div>
 
-<div style="
-    max-height: 70vh;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    background: #fff;
-    ">
+<div class="row g-4 mb-5">
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card border-0 shadow-sm h-100" style="border-radius: 12px;">
+            <div class="card-body p-4 d-flex align-items-center">
+                <div class="bg-warning bg-opacity-10 p-3 rounded-3 me-3">
+                    <i class="bi bi-bag-check-fill text-warning h3 m-0"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Total Orders</h6>
+                    <h3 class="fw-bold m-0 text-dark">@ViewBag.TotalOrders</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table class="table table-bordered mb-0">
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card border-0 shadow-sm h-100" style="border-radius: 12px;">
+            <div class="card-body p-4 d-flex align-items-center">
+                <div class="bg-success bg-opacity-10 p-3 rounded-3 me-3">
+                    <i class="bi bi-currency-exchange text-success h3 m-0"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted text-uppercase small fw-bold mb-1">Total Sales</h6>
+                    <h3 class="fw-bold m-0 text-success">₱@ViewBag.TotalSales</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <thead style="
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background-color: #212529;
-            color: white;
-            ">
-            <tr>
-                <th>Customer</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Discount</th>
-                <th>Final</th>
-            </tr>
-        </thead>
+<div class="card border-0 shadow-sm" style="border-radius: 15px; overflow: hidden;">
+    <div class="card-header bg-white border-0 pt-4 px-4 d-flex justify-content-between align-items-center">
+        <h5 class="fw-bold text-dark m-0">Recent Invoices & Orders</h5>
+        <span class="text-muted small">Scroll vertically to view more entries</span>
+    </div>
 
-        <tbody>
-            @foreach (var order in Model)
-            {
-                <tr>
-                    <td>@order.CustomerName</td>
-                    <td>@order.OrderDate</td>
-                    <td>₱@order.TotalAmount</td>
-                    <td>₱@order.Discount</td>
-                    <td>₱@order.FinalAmount</td>
-                </tr>
+    <div class="card-body p-0">
+        <div style="max-height: 60vh; overflow-y: auto;">
+            <table class="table align-middle mb-0 custom-admin-table table-hover">
+                <thead class="table-light text-secondary sticky-top" style="z-index: 5; background-color: #f8f9fa;">
+                    <tr>
+                        <th class="ps-4 py-3 text-uppercase font-size-sm">Customer</th>
+                        <th class="py-3 text-uppercase font-size-sm">Order Date</th>
+                        <th class="py-3 text-uppercase font-size-sm">Subtotal</th>
+                        <th class="py-3 text-uppercase font-size-sm text-danger">Discount</th>
+                        <th class="py-3 text-uppercase font-size-sm text-success fw-bold">Final Amount</th>
+                        <th class="pe-4 py-3 text-center text-uppercase font-size-sm">Breakdown</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        int index = 0;
+                        foreach (var order in Model)
+                        {
+                            index++;
+                            string collapseId = $"itemsCollapse_{index}";
 
-                <tr>
-                    <td colspan="5">
-                        <strong>Items:</strong>
+                            <tr>
+                                <td class="ps-4 fw-semibold text-dark">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="rounded-circle bg-secondary bg-opacity-10 text-secondary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.85rem;">
+                                            @(string.IsNullOrEmpty(order.CustomerName) ? "U" : order.CustomerName.Substring(0, 1).ToUpper())
+                                        </div>
+                                        @order.CustomerName
+                                    </div>
+                                </td>
+                                <td class="text-secondary">@order.OrderDate</td>
+                                <td class="text-dark">₱@order.TotalAmount</td>
+                                <td class="text-danger">-₱@order.Discount</td>
+                                <td class="text-success fw-bold">₱@order.FinalAmount</td>
+                                <td class="pe-4 text-center">
+                                    <button class="btn btn-sm btn-outline-secondary px-3 py-1"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#@collapseId"
+                                            aria-expanded="false"
+                                            style="border-radius: 6px; font-size: 0.8rem;">
+                                        <i class="bi bi-eye-fill me-1"></i> View Items
+                                    </button>
+                                </td>
+                            </tr>
 
-                        <ul style="margin-bottom:0;">
-                            @foreach (var item in order.Items)
-                            {
-                                <li>
-                                    @item.ProductName
-                                    — Qty: @item.Quantity
-                                    — ₱@item.Price
-                                </li>
-                            }
-                        </ul>
-                    </td>
-                </tr>
-            }
-        </tbody>
-
-    </table>
-
+                            <tr class="collapse" id="@collapseId">
+                                <td colspan="6" class="bg-light p-0">
+                                    <div class="px-5 py-3 border-start border-warning border-3 bg-white mx-3 my-2 shadow-sm rounded-3">
+                                        <h6 class="fw-bold text-dark mb-2"><i class="bi bi-cart3 text-warning me-2"></i>Purchased Items Log</h6>
+                                        <div class="row row-cols-1 row-cols-md-2 g-2">
+                                            @foreach (var item in order.Items)
+                                            {
+                                                <div class="col">
+                                                    <div class="d-flex justify-content-between border-bottom pb-1 small">
+                                                        <span class="text-dark fw-medium">@item.ProductName <span class="text-muted text-xs">x@item.Quantity</span></span>
+                                                        <span class="text-secondary fw-semibold">₱@item.Price</span>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
