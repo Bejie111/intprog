@@ -1,0 +1,22 @@
+﻿@model BreadBee.Models.Category
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>✏️ Edit Category</h2>
+
+<form asp-action="Edit" method="post" class="card p-4">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Category Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Update
+    </button>
+
+</form>

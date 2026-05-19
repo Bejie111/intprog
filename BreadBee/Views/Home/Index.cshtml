@@ -1,0 +1,87 @@
+﻿@model List<BreadBee.Models.Product>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- HERO SECTION -->
+<div style="background:linear-gradient(to right, #ffcc70, #ff9f1c);
+    padding:60px; border-radius:10px; color:white;">
+
+    <h1 style="font-size:50px; font-weight:bold;">
+        🍞 Welcome to BreadBee
+    </h1>
+
+    <p style="font-size:18px;">
+        Freshly baked bread, pastries, and snacks delivered with sweetness 🐝
+    </p>
+
+    <a href="/Product/Products" class="btn btn-dark mt-3">
+        Order Now
+    </a>
+</div>
+
+<br />
+
+<!-- FEATURED PRODUCTS -->
+<h2>🔥 Featured Products</h2>
+
+<div class="row">
+
+    @foreach (var item in Model.Take(6))
+    {
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-sm p-2">
+
+                <img src="@item.ImageUrl"
+                     style="height:180px; object-fit:cover;" />
+
+                <h5 class="mt-2">@item.Name</h5>
+
+                <p>₱@item.Price</p>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<hr />
+
+<!-- CATEGORIES SECTION -->
+<h2>📦 Shop by Category</h2>
+
+<div class="row text-center">
+
+    <div class="col-md-3">
+        <div class="p-3 bg-light rounded">🍞 Bread</div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="p-3 bg-light rounded">🍰 Cakes</div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="p-3 bg-light rounded">🥐 Pastries</div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="p-3 bg-light rounded">☕ Drinks</div>
+    </div>
+
+</div>
+
+<br />
+
+<!-- CALL TO ACTION -->
+<div class="text-center p-5 bg-warning rounded">
+
+    <h2>Hungry? Let BreadBee serve you 🐝</h2>
+
+    <a href="/Product/Products" class="btn btn-dark mt-2">
+        Browse Menu
+    </a>
+
+</div>

@@ -1,0 +1,109 @@
+﻿@model List<BreadBee.Models.Product>
+@{
+    Layout = "_UserLayout";
+}
+
+<h1>BreadBee Products</h1>
+
+<!-- FILTER SECTION -->
+<form method="get" class="mb-3">
+
+    <input type="text"
+           name="search"
+           value="@ViewBag.Search"
+           placeholder="Search bread, cake..."
+           class="form-control"
+           style="max-width:250px; display:inline-block;" />
+
+    <select name="categoryId"
+            class="form-control"
+            style="max-width:200px; display:inline-block;">
+
+        <option value="">All Categories</option>
+
+        @foreach (var cat in ViewBag.Categories)
+        {
+            <option value="@cat.Id"
+                    selected="@(ViewBag.CategoryId == cat.Id)">
+                @cat.Name
+            </option>
+        }
+
+    </select>
+
+    <button class="btn btn-primary">
+        Apply
+    </button>
+
+    <a asp-action="Products" class="btn btn-secondary">
+        Reset
+    </a>
+
+</form>
+
+<!-- 🔥 DISCOUNT DEALS (ONLY LOGGED IN) -->
+@if (ViewBag.IsLoggedIn == true)
+{
+    <div class="card mb-3 p-3 border-warning">
+
+        <h5>🔥 Bulk Discount Available</h5>
+
+        <ul class="mb-0">
+            <li>Buy 50 pcs → 5% discount</li>
+            <li>Buy 100 pcs → 10% discount</li>
+            <li>Buy 200+ pcs → 20% discount</li>
+        </ul>
+
+        <small class="text-muted">
+            Discount is automatically applied at checkout.
+        </small>
+
+    </div>
+}
+
+<!-- PRODUCT LIST -->
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-4">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <img src="@item.ImageUrl"
+                     style="width:100px; height:100px; object-fit:cover;" />
+
+                <div class="card-body d-flex flex-column">
+
+                    <h5 class="card-title mb-1">@item.Name</h5>
+
+                    <p class="text-muted small mb-2">
+                        @item.Category?.Name
+                    </p>
+
+                    <p class="small flex-grow-1">
+                        @item.Description
+                    </p>
+
+                    <div class="mb-2">
+                        <strong>₱@item.Price</strong>
+                    </div>
+
+                    <small class="text-muted mb-3">
+                        Stock: @item.Stock
+                    </small>
+
+                    <a asp-controller="Cart"
+                       asp-action="Add"
+                       asp-route-id="@item.Id"
+                       class="btn btn-warning w-100">
+                        Add to Cart
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>

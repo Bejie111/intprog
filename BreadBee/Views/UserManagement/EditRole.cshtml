@@ -1,0 +1,36 @@
+﻿@model BreadBee.Models.User
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>✏️ Edit User Role</h2>
+
+<form asp-action="EditRole" method="post" class="card p-4">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="FullName" class="form-control" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label>Role</label>
+
+        <select asp-for="Role" class="form-control">
+            <option>Customer</option>
+            <option>Admin</option>
+        </select>
+    </div>
+
+    <button class="btn btn-success">
+        Save
+    </button>
+
+</form>

@@ -1,0 +1,21 @@
+﻿@model BreadBee.Models.Category
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>➕ Add Category</h2>
+
+<form asp-action="Create" method="post" class="card p-4">
+
+    <div class="mb-2">
+        <label>Category Name</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+
+    <button class="btn btn-success">
+        Save
+    </button>
+    <a asp-action="CategoryManagement" class="btn btn-secondary">Cancel</a>
+
+</form>

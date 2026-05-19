@@ -1,0 +1,45 @@
+﻿@model BreadBee.Models.Order
+
+<h2>🧾 Order Receipt</h2>
+
+<hr />
+
+<p><strong>Order ID:</strong> @Model.Id</p>
+<p><strong>Name:</strong> @Model.CustomerName</p>
+<p><strong>Phone:</strong> @Model.ContactNumber</p>
+<p><strong>Address:</strong> @Model.Address</p>
+<p><strong>Date:</strong> @Model.OrderDate</p>
+
+<hr />
+
+<h4>Items</h4>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.ProductName</td>
+            <td>@item.Quantity</td>
+            <td>₱@item.Price</td>
+            <td>₱@(item.Price * item.Quantity)</td>
+        </tr>
+    }
+</table>
+
+<hr />
+
+<h4>Summary</h4>
+<p><strong>Subtotal:</strong> ₱@Model.TotalAmount</p>
+<p><strong>Discount:</strong> ₱@Model.Discount</p>
+<p><strong>Final Total:</strong> ₱@Model.FinalAmount</p>
+
+<br />
+
+<a href="/Product/Products" class="btn btn-primary">Continue Shopping</a>

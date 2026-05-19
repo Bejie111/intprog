@@ -1,0 +1,56 @@
+﻿@model BreadBee.Models.User
+@{
+    var role = Context.Session.GetString("Role");
+}
+
+<div class="container mt-4">
+
+    <h2>👤 Profile Settings</h2>
+
+    <form asp-action="UpdateProfile" method="post" class="card p-4 mt-3">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input asp-for="Email" class="form-control"/>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Role</label>
+            <input asp-for="Role" class="form-control" readonly />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Changes
+        </button>
+        @if (role == "Admin")
+        {
+            <a asp-controller="Admin"
+               asp-action="Dashboard"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Product"
+               asp-action="Products"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+        }
+
+    </form>
+
+</div>

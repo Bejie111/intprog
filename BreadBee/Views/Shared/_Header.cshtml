@@ -1,0 +1,189 @@
+﻿@{
+    var userId = Context.Session.GetInt32("UserId");
+    var name = Context.Session.GetString("Name");
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+
+    <a class="navbar-brand fw-bold" href="/Home/Index">
+        🍞 BreadBee
+    </a>
+
+    <div class="ms-auto">
+
+        @if (userId == null)
+        {
+            <!-- OPEN MODAL BUTTON -->
+            <button class="btn btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#authModal">
+
+                Login / Register
+
+            </button>
+        }
+        else
+        {
+            <!-- USER DROPDOWN -->
+            <div class="dropdown">
+
+                <button class="btn btn-outline-light dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown">
+
+                    👤 @name
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                    <li>
+                        <a class="dropdown-item"
+                           asp-controller="User"
+                           asp-action="Profile">
+                            Profile Settings
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item text-danger"
+                           asp-controller="Account"
+                           asp-action="Logout">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        }
+
+    </div>
+
+</nav>
+
+<!-- AUTH MODAL -->
+<div class="modal fade" id="authModal" tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    BreadBee Account
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <!-- TABS -->
+                <ul class="nav nav-tabs">
+
+                    <li class="nav-item">
+                        <button class="nav-link active"
+                                data-bs-toggle="tab"
+                                data-bs-target="#loginTab">
+
+                            Login
+
+                        </button>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="nav-link"
+                                data-bs-toggle="tab"
+                                data-bs-target="#registerTab">
+
+                            Register
+
+                        </button>
+                    </li>
+
+                </ul>
+
+                <!-- TAB CONTENT -->
+                <div class="tab-content mt-3">
+
+                    <!-- LOGIN -->
+                    <div class="tab-pane fade show active"
+                         id="loginTab">
+
+                        <form asp-controller="Account"
+                              asp-action="Login"
+                              method="post">
+
+                            <input type="Email"
+                                   name="Email"
+                                   class="form-control mb-2"
+                                   placeholder="Email Address" />
+
+                            <input type="password"
+                                   name="Password"
+                                   class="form-control mb-2"
+                                   placeholder="Password" />
+
+                            <button class="btn btn-primary w-100">
+                                Login
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                    <!-- REGISTER -->
+                    <div class="tab-pane fade"
+                         id="registerTab">
+
+                        <form asp-controller="Account"
+                              asp-action="Register"
+                              method="post">
+
+                            <input type="text"
+                                   name="FullName"
+                                   class="form-control mb-2"
+                                   placeholder="Full Name" />
+
+                            <input type="email"
+                                   name="Email"
+                                   class="form-control mb-2"
+                                   placeholder="Email" />
+
+                            <input type="text"
+                                   name="PhoneNumber"
+                                   class="form-control mb-2"
+                                   placeholder="Phone Number" />
+
+                            <input type="password"
+                                   name="Password"
+                                   class="form-control mb-2"
+                                   placeholder="Password" />
+
+                            <button class="btn btn-success w-100">
+                                Register
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

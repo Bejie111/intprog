@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Admin Dashboard</h1>
+
+<div class="mb-3">
+    <h4>Total Orders: @ViewBag.TotalOrders</h4>
+    <h4>Total Sales: ₱@ViewBag.TotalSales</h4>
+</div>
+
+<div style="
+    max-height: 70vh;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    background: #fff;
+    ">
+
+    <table class="table table-bordered mb-0">
+
+        <thead style="
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #212529;
+            color: white;
+            ">
+            <tr>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Discount</th>
+                <th>Final</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.CustomerName</td>
+                    <td>@order.OrderDate</td>
+                    <td>₱@order.TotalAmount</td>
+                    <td>₱@order.Discount</td>
+                    <td>₱@order.FinalAmount</td>
+                </tr>
+
+                <tr>
+                    <td colspan="5">
+                        <strong>Items:</strong>
+
+                        <ul style="margin-bottom:0;">
+                            @foreach (var item in order.Items)
+                            {
+                                <li>
+                                    @item.ProductName
+                                    — Qty: @item.Quantity
+                                    — ₱@item.Price
+                                </li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>

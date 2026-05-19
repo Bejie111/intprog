@@ -1,0 +1,60 @@
+﻿@model List<BreadBee.Models.User>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>👤 User Management</h2>
+
+<!-- SEARCH -->
+<form method="get" class="mb-3">
+    <input type="text" name="search"
+           placeholder="Search user..."
+           class="form-control"
+           style="max-width:300px; display:inline-block;" />
+
+    <button class="btn btn-primary">Search</button>
+</form>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Role</td>
+
+                <td>
+                    <a asp-action="EditRole"
+                       asp-route-id="@user.Id"
+                       class="btn btn-warning btn-sm">
+                        Edit Role
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@user.Id"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete this user?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,49 @@
+﻿@model List<BreadBee.Models.Cart>
+
+<h1>Checkout</h1>
+
+<form asp-action="PlaceOrder" method="post">
+
+    @if (Context.Session.GetInt32("UserId") == null)
+    {
+        <div class="mb-3">
+            <label>Full Name</label>
+            <input name="CustomerName" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>Phone Number</label>
+            <input name="ContactNumber" class="form-control" required />
+        </div>
+    }
+    else
+    {
+        <input type="hidden" name="CustomerName"
+               value="@Context.Session.GetString("Name")" />
+    }
+    <div class="mb-3">
+        <label>Address</label>
+        <input name="Address" class="form-control" required />
+    </div>
+
+    <h4>Order Summary</h4>
+
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @item.ProductName - ₱@item.Price x @item.Quantity
+            </li>
+        }
+    </ul>
+
+    <h3>
+        Total:
+        ₱@Model.Sum(x => x.Price * x.Quantity)
+    </h3>
+
+    <button type="submit" class="btn btn-success">
+        Place Order
+    </button>
+    <a href="/Product/Products" class="btn btn-secondary">Cancel</a>
+
+</form>

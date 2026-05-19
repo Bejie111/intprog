@@ -1,0 +1,54 @@
+﻿@model List<BreadBee.Models.Cart>
+
+<h1>Your Cart</h1>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>₱@item.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>₱@(item.Price * item.Quantity)</td>
+                    <td>
+                        <a asp-action="Remove"
+                           asp-route-id="@item.ProductId"
+                           class="btn btn-danger btn-sm">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <h3>
+        Total:
+        ₱@Model.Sum(x => x.Price * x.Quantity)
+        <a asp-action="Clear"
+           class="btn btn-warning btn-sm">
+            Clear Cart </a>
+    </h3>
+
+    <a asp-action="CheckOut" class="btn btn-success">
+        Checkout
+    </a>
+}
