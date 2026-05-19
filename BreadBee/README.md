@@ -53,6 +53,3 @@ Simple ASP.NET Core (.NET 10) e-commerce sample (MVC controllers + Razor views) 
 
 ## Contributing
 Fork, create a branch, add tests where applicable, open a pull request.
-
-## License
-No license file included. Add a LICENSE if you plan to publish or distribute this project.
