@@ -16,12 +16,12 @@ namespace BreadBee.Controllers
         }
 
         // LIST PRODUCTS
-        public IActionResult ProductManagement(string search)
+        public IActionResult Index(string search)
         {
             var role = HttpContext.Session.GetString("Role");
 
             if (role != "Admin")
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Products", "Product");
 
             var products = _context.Products
                 .Include(p => p.Category)
@@ -55,7 +55,24 @@ namespace BreadBee.Controllers
         public IActionResult Create(Product model, IFormFile ImageFile)
         {
             if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors);
+
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+
+                ViewBag.Categories = _context.Categories
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.Id.ToString(),
+                        Text = c.Name
+                    }).ToList();
+
                 return View(model);
+            }
 
             string fileName = null;
 
@@ -86,7 +103,7 @@ namespace BreadBee.Controllers
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            return RedirectToAction("ProductManagement");
+            return RedirectToAction("Index");
         }
 
         // EDIT PAGE
@@ -107,7 +124,6 @@ namespace BreadBee.Controllers
             return View(product);
         }
 
-        [HttpPost]
         [HttpPost]
         public IActionResult Edit(Product model, IFormFile ImageFile)
         {
@@ -141,7 +157,7 @@ namespace BreadBee.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("ProductManagement");
+            return RedirectToAction("Index");
         }
 
         // DELETE
@@ -155,7 +171,7 @@ namespace BreadBee.Controllers
             _context.Products.Remove(product);
             _context.SaveChanges();
 
-            return RedirectToAction("ProductManagement");
+            return RedirectToAction("Index");
         }
     }
 }

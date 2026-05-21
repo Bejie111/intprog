@@ -18,7 +18,7 @@ namespace BreadBee.Controllers
             
             if(role != "Admin")
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Products", "Product");
             }
 
             var order = _context.Orders

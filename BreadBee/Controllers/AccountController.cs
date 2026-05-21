@@ -14,7 +14,7 @@ namespace BreadBee.Controllers
         }
         public IActionResult Login()
         {
-            return View();
+            return RedirectToAction("Products", "Product");
         }
 
         [HttpPost]
@@ -60,7 +60,7 @@ namespace BreadBee.Controllers
 
             _context.Users.Add(user);
             _context.SaveChanges();
-            return RedirectToAction("Login");
+            return RedirectToAction("Products","Product");
         }
     }
 }

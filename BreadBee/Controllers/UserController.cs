@@ -22,7 +22,7 @@ namespace BreadBee.Controllers
 
             if (userId == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Products", "Product");
             }
 
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
