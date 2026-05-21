@@ -139,6 +139,12 @@
                             </button>
 
                         </form>
+                        @if (TempData["LoginError"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                @TempData["LoginError"]
+                            </div>
+                        }
 
                     </div>
 
@@ -187,3 +193,16 @@
     </div>
 
 </div>
+@if (TempData["LoginError"] != null)
+{
+    <script>
+        window.onload = function () {
+
+            var modal = new bootstrap.Modal(
+                document.getElementById('authModal')
+            );
+
+            modal.show();
+        };
+    </script>
+}

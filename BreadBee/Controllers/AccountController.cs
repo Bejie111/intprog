@@ -18,21 +18,27 @@ namespace BreadBee.Controllers
         }
 
         [HttpPost]
+        [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            var user = _context.Users
+                .FirstOrDefault(u =>
+                    u.Email == email &&
+                    u.Password == password);
 
-            if (user == null) 
+            if (user == null)
             {
-                ViewBag.ErrorMessage = "Invalid email or password.";
-                return View();
+                TempData["LoginError"] = "Invalid email or password.";
+
+                return RedirectToAction("Products", "Product");
             }
 
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("Role", user.Role);
+            HttpContext.Session.SetString("Name", user.FullName);
             HttpContext.Session.SetString("Email", user.Email);
 
-            if(user.Role == "Admin")
+            if (user.Role == "Admin")
             {
                 return RedirectToAction("Dashboard", "Admin");
             }

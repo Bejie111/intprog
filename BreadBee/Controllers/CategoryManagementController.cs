@@ -13,7 +13,7 @@ namespace BreadBee.Controllers
         {
             _context = context;
         }
-        public IActionResult CategoryManagement()
+        public IActionResult Index()
         {
             var role = HttpContext.Session.GetString("Role");
 
@@ -35,7 +35,7 @@ namespace BreadBee.Controllers
             _context.Categories.Add(model);
             _context.SaveChanges();
 
-            return RedirectToAction("CategoryManagement");
+            return RedirectToAction("Index");
         }
         public IActionResult Edit(int id)
         {
@@ -58,7 +58,7 @@ namespace BreadBee.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("CategoryManagement");
+            return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
         {
@@ -78,7 +78,7 @@ namespace BreadBee.Controllers
             _context.Categories.Remove(category);
             _context.SaveChanges();
 
-            return RedirectToAction("CategoryManagement");
+            return RedirectToAction("Index");
         }
     }
 }

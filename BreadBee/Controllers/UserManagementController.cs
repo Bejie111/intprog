@@ -14,12 +14,12 @@ namespace BreadBee.Controllers
         }
 
         // LIST ALL USERS
-        public IActionResult UserManagement(string search)
+        public IActionResult Index(string search)
         {
             var role = HttpContext.Session.GetString("Role");
 
             if (role != "Admin")
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Products", "Product");
 
             var users = _context.Users.AsQueryable();
 
@@ -68,7 +68,7 @@ namespace BreadBee.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("UserManagement");
+            return RedirectToAction("Index");
         }
     }
 }
