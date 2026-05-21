@@ -1,0 +1,201 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap');
+
+body {
+    background: #FFF8EE !important;
+    font-family: 'Nunito', sans-serif;
+}
+
+.checkout-wrapper {
+    max-width: 620px;
+    margin: 48px auto;
+    padding: 0 20px;
+}
+
+.checkout-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #5C3D1E;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.checkout-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(92,61,30,0.12);
+    margin-bottom: 24px;
+}
+
+.section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #5C3D1E;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #f0e8d8;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 18px;
+}
+
+    .form-group label {
+        font-weight: 700;
+        font-size: 0.88rem;
+        color: #8B5E3C;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .form-group .form-control {
+        border: 2px solid #f0e8d8 !important;
+        border-radius: 12px !important;
+        padding: 11px 16px !important;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.95rem;
+        background: #FFF8EE !important;
+        color: #5C3D1E;
+        transition: border-color .2s;
+        width: 100%;
+    }
+
+        .form-group .form-control:focus {
+            border-color: #F5A623 !important;
+            box-shadow: 0 0 0 3px rgba(245,166,35,0.15) !important;
+            outline: none;
+            background: #ffffff !important;
+        }
+
+/* ORDER SUMMARY */
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f5ede0;
+}
+
+    .order-item:last-child {
+        border-bottom: none;
+    }
+
+.order-item-name {
+    font-weight: 700;
+    color: #5C3D1E;
+    font-size: 0.95rem;
+}
+
+.order-item-qty {
+    font-size: 0.82rem;
+    color: #8B5E3C;
+    margin-top: 2px;
+}
+
+.order-item-price {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: #D4880E;
+    font-size: 1rem;
+}
+
+/* TOTAL */
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFF8EE;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-top: 8px;
+}
+
+.total-label {
+    font-weight: 800;
+    color: #8B5E3C;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #D4880E;
+}
+
+/* BUTTONS */
+.checkout-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn-place-order {
+    flex: 1;
+    background: #F5A623;
+    color: #5C3D1E;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 0;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all .2s ease;
+    text-align: center;
+}
+
+    .btn-place-order:hover {
+        background: #D4880E;
+        color: #ffffff;
+        transform: scale(1.02);
+    }
+
+.btn-cancel {
+    flex: 1;
+    background: #fff0f0;
+    color: #c0392b;
+    border: 2px solid #f5c6c6;
+    border-radius: 30px;
+    padding: 13px 0;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: all .2s ease;
+}
+
+    .btn-cancel:hover {
+        background: #e74c3c;
+        color: #ffffff;
+        border-color: #e74c3c;
+        text-decoration: none;
+    }
+
+@media (max-width: 768px) {
+    .checkout-wrapper {
+        margin: 24px auto;
+    }
+
+    .checkout-card {
+        padding: 20px;
+    }
+
+    .checkout-actions {
+        flex-direction: column;
+    }
+}

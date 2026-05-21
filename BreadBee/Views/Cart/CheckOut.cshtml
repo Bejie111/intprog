@@ -1,49 +1,69 @@
 ﻿@model List<BreadBee.Models.Cart>
 
-<h1>Checkout</h1>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/checkout.css" />
 
-<form asp-action="PlaceOrder" method="post">
+<div class="checkout-wrapper">
 
-    @if (Context.Session.GetInt32("UserId") == null)
-    {
-        <div class="mb-3">
-            <label>Full Name</label>
-            <input name="CustomerName" class="form-control" required />
-        </div>
-        <div class="mb-3">
-            <label>Phone Number</label>
-            <input name="ContactNumber" class="form-control" required />
-        </div>
-    }
-    else
-    {
-        <input type="hidden" name="CustomerName"
-               value="@Context.Session.GetString("Name")" />
-    }
-    <div class="mb-3">
-        <label>Address</label>
-        <input name="Address" class="form-control" required />
+    <div class="checkout-title">
+        🧾 Checkout
     </div>
 
-    <h4>Order Summary</h4>
+    <form asp-action="PlaceOrder" method="post">
 
-    <ul>
-        @foreach (var item in Model)
-        {
-            <li>
-                @item.ProductName - ₱@item.Price x @item.Quantity
-            </li>
-        }
-    </ul>
+        <!-- DELIVERY DETAILS -->
+        <div class="checkout-card">
+            <div class="section-label">📦 Delivery Details</div>
 
-    <h3>
-        Total:
-        ₱@Model.Sum(x => x.Price * x.Quantity)
-    </h3>
+            @if (Context.Session.GetInt32("UserId") == null)
+            {
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input name="CustomerName" class="form-control" required placeholder="Enter your full name" />
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input name="ContactNumber" class="form-control" required placeholder="Enter your phone number" />
+                </div>
+            }
+            else
+            {
+                <input type="hidden" name="CustomerName"
+                       value="@Context.Session.GetString("Name")" />
+            }
 
-    <button type="submit" class="btn btn-success">
-        Place Order
-    </button>
-    <a href="/Product/Products" class="btn btn-secondary">Cancel</a>
+            <div class="form-group">
+                <label>Address</label>
+                <input name="Address" class="form-control" required placeholder="Enter your delivery address" />
+            </div>
+        </div>
 
-</form>
+        <!-- ORDER SUMMARY -->
+        <div class="checkout-card">
+            <div class="section-label">🛒 Order Summary</div>
+
+            @foreach (var item in Model)
+            {
+                <div class="order-item">
+                    <div>
+                        <div class="order-item-name">@item.ProductName</div>
+                        <div class="order-item-qty">x@item.Quantity</div>
+                    </div>
+                    <div class="order-item-price">₱@(item.Price* item.Quantity)</div>
+                </div>
+            }
+
+            <div class="total-row">
+                <span class="total-label">Total</span>
+                <span class="total-amount">₱@Model.Sum(x => x.Price * x.Quantity)</span>
+            </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="checkout-actions">
+            <button type="submit" class="btn-place-order">✅ Place Order</button>
+            <a href="/Product/Products" class="btn-cancel">✕ Cancel</a>
+        </div>
+
+    </form>
+</div>

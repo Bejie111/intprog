@@ -7,243 +7,107 @@
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BreadBee.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin-layout.css" />
 </head>
-<style>
-    body {
-        margin: 0;
-        background-color: #f4f6f9;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .admin-wrapper {
-        display: flex;
-        min-height: 100vh;
-    }
-
-    /* Premium Dark Dashboard Palette */
-    .sidebar {
-        width: 270px;
-        background: #11141a;
-        color: #ecf0f1;
-        padding: 24px 16px;
-        box-shadow: 4px 0 15px rgba(0,0,0,0.15);
-        display: flex;
-        flex-direction: column;
-        z-index: 100;
-    }
-
-    .sidebar-brand {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: #fff;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding-left: 8px;
-        letter-spacing: -0.5px;
-    }
-
-        .sidebar-brand span {
-            color: #FFC107;
-        }
-
-    /* Elegant Section Dividers */
-    .sidebar-caption {
-        font-size: 0.72rem;
-        font-weight: 700;
-        text-uppercase: true;
-        color: #4f5d73;
-        letter-spacing: 1.2px;
-        margin: 15px 0 8px 12px;
-    }
-
-    .sidebar hr {
-        border-color: rgba(255,255,255,0.08);
-        margin: 15px 0;
-    }
-
-    /* Smooth Interactive Navigation Links */
-    .sidebar a {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        color: #94a3b8;
-        padding: 11px 16px;
-        text-decoration: none;
-        border-radius: 8px;
-        margin-bottom: 4px;
-        font-size: 0.95rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-
-        .sidebar a i {
-            font-size: 1.2rem;
-            transition: transform 0.2s ease;
-        }
-
-        /* Hover State: Soft ambient glow and shifting colors */
-        .sidebar a:hover {
-            background: rgba(255, 255, 255, 0.03);
-            color: #fff;
-        }
-
-            .sidebar a:hover i {
-                transform: scale(1.08);
-            }
-
-        /* Premium Active State: Styled with a left indicator pill */
-        .sidebar a.active-link {
-            background: rgba(255, 193, 7, 0.1); /* Transparent Yellow Glow */
-            color: #FFC107;
-            font-weight: 600;
-        }
-
-            .sidebar a.active-link::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 20%;
-                height: 60%;
-                width: 4px;
-                background-color: #FFC107;
-                border-radius: 0 4px 4px 0;
-            }
-
-    /* Profile Pill Widget at Bottom */
-    .sidebar-profile {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px;
-        background: rgba(255,255,255,0.03);
-        border-radius: 10px;
-        margin-bottom: 15px;
-        border: 1px solid rgba(255,255,255,0.02);
-    }
-
-    .profile-avatar {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #FFC107;
-        color: #11141a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 0.9rem;
-    }
-
-    .profile-info {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
-    }
-
-    .profile-name {
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: #fff;
-    }
-
-    .profile-role {
-        font-size: 0.75rem;
-        color: #64748b;
-    }
-
-    .sidebar a.text-danger {
-        color: #f1f5f9;
-    }
-
-        .sidebar a.text-danger:hover {
-            background: rgba(239, 68, 68, 0.1) !important;
-            color: #ef4444 !important;
-        }
-
-    .content-wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
-
-    .main-content {
-        flex: 1;
-        padding: 40px;
-    }
-
-    .admin-footer {
-        background: #fff;
-        padding: 15px 40px;
-        border-top: 1px solid #e9ecef;
-        font-size: 0.9rem;
-    }
-
-</style>
-
 
 <body>
     <div class="admin-wrapper">
 
+        <!-- SIDEBAR -->
         <div class="sidebar">
+
+            <!-- BRAND -->
             <div class="sidebar-brand">
-                <i class="bi bi-hexagon-fill text-warning"></i> BreadBee <span>Admin</span>
+                <div class="brand-icon">🐝</div>
+                <div class="brand-text">
+                    BreadBee
+                    <span>Admin</span>
+                </div>
             </div>
 
+            <div class="sidebar-divider"></div>
+
+            <!-- CORE -->
             <div class="sidebar-caption">Core</div>
-            <a asp-controller="Admin" asp-action="Dashboard">
-                <i class="bi bi-grid-1x2-fill"></i> Dashboard
+            <a asp-controller="Admin" asp-action="Dashboard" class="sidebar-link">
+                <div class="link-icon"><i class="bi bi-grid-1x2-fill"></i></div>
+                <span>Dashboard</span>
             </a>
 
+            <!-- MANAGEMENT -->
             <div class="sidebar-caption">Management</div>
-
-            <a asp-controller="UserManagement" asp-action="UserManagement">
-                <i class="bi bi-people-fill"></i> User Management
+            <a asp-controller="UserManagement" asp-action="UserManagement" class="sidebar-link">
+                <div class="link-icon"><i class="bi bi-people-fill"></i></div>
+                <span>User Management</span>
+            </a>
+            <a asp-controller="ProductManagement" asp-action="ProductManagement" class="sidebar-link">
+                <div class="link-icon"><i class="bi bi-basket3-fill"></i></div>
+                <span>Product Management</span>
+            </a>
+            <a asp-controller="CategoryManagement" asp-action="CategoryManagement" class="sidebar-link">
+                <div class="link-icon"><i class="bi bi-folder-fill"></i></div>
+                <span>Category Management</span>
             </a>
 
-            <a asp-controller="ProductManagement" asp-action="ProductManagement">
-                <i class="bi bi-basket3-fill"></i> Product Management
-            </a>
-
-            <a asp-controller="CategoryManagement" asp-action="CategoryManagement" class="active-link">
-                <i class="bi bi-folder-fill"></i> Category Management
-            </a>
-
+            <!-- SYSTEM -->
             <div class="sidebar-caption">System</div>
-            <a asp-controller="User" asp-action="Profile">
-                <i class="bi bi-sliders"></i> Profile Settings
+            <a asp-controller="User" asp-action="Profile" class="sidebar-link">
+                <div class="link-icon"><i class="bi bi-sliders"></i></div>
+                <span>Profile Settings</span>
             </a>
 
-            <div class="mt-auto">
+            <!-- BOTTOM PROFILE + LOGOUT -->
+            <div class="sidebar-bottom">
+                <div class="sidebar-divider"></div>
                 <div class="sidebar-profile">
-                    <div class="profile-avatar">A</div>
+                    <div class="profile-avatar">
+                        @(Context.Session.GetString("Name")?[0].ToString().ToUpper() ?? "A")
+                    </div>
                     <div class="profile-info">
-                        <span class="profile-name">Administrator</span>
-                        <span class="profile-role">Super Admin</span>
+                        <span class="profile-name">
+                            @(Context.Session.GetString("Name") ?? "Administrator")
+                        </span>
                     </div>
                 </div>
-                <a class="text-danger" asp-controller="Account" asp-action="Logout">
-                    <i class="bi bi-power"></i> Logout
+                <a class="sidebar-link logout-link" asp-controller="Account" asp-action="Logout">
+                    <div class="link-icon"><i class="bi bi-power"></i></div>
+                    <span>Logout</span>
                 </a>
             </div>
-        </div> <div class="content-wrapper">
+
+        </div>
+        <!-- END SIDEBAR -->
+
+        <div class="content-wrapper">
             <main role="main" class="main-content">
                 @RenderBody()
             </main>
-
             <footer class="admin-footer text-muted">
-                &copy; 2026 - BreadBee Studio - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-secondary text-decoration-none fw-bold">Privacy</a>
+                &copy; 2026 - BreadBee Studio -
+                <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                   class="text-secondary text-decoration-none fw-bold">Privacy</a>
             </footer>
         </div>
+
     </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Auto highlight active sidebar link
+        const links = document.querySelectorAll('.sidebar-link');
+        links.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active-link');
+            }
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

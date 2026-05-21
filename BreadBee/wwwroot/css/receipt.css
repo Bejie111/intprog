@@ -1,0 +1,256 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap');
+
+body {
+    background: #FFF8EE !important;
+    font-family: 'Nunito', sans-serif;
+}
+
+.receipt-wrapper {
+    max-width: 680px;
+    margin: 48px auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
+.receipt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.receipt-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #5C3D1E;
+}
+
+.receipt-badge {
+    background: #e6f9ee;
+    color: #27ae60;
+    font-weight: 800;
+    font-size: 0.88rem;
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 2px solid #a8e6c0;
+}
+
+/* CARD */
+.receipt-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 28px 32px;
+    box-shadow: 0 8px 32px rgba(92,61,30,0.12);
+    margin-bottom: 20px;
+}
+
+/* SECTION LABEL */
+.section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #5C3D1E;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #f0e8d8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* INFO GRID */
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #FFF8EE;
+    border-radius: 12px;
+}
+
+.info-label {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #8B5E3C;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.info-value {
+    font-weight: 700;
+    color: #5C3D1E;
+    font-size: 0.95rem;
+}
+
+/* TABLE */
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .receipt-table thead tr {
+        background: #FFF8EE;
+        border-radius: 12px;
+    }
+
+    .receipt-table thead th {
+        padding: 12px 14px;
+        font-size: 0.82rem;
+        font-weight: 800;
+        color: #8B5E3C;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        border: none;
+    }
+
+        .receipt-table thead th:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .receipt-table thead th:last-child {
+            border-radius: 0 12px 12px 0;
+        }
+
+    .receipt-table tbody tr {
+        border-bottom: 1px solid #f5ede0;
+    }
+
+        .receipt-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+    .receipt-table tbody td {
+        padding: 14px;
+        font-size: 0.92rem;
+        color: #5C3D1E;
+        font-weight: 600;
+        border: none;
+    }
+
+.product-name-cell {
+    font-weight: 800 !important;
+}
+
+.qty-badge {
+    background: #f5ede0;
+    color: #8B5E3C;
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.item-total {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900 !important;
+    color: #D4880E !important;
+}
+
+/* SUMMARY */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5ede0;
+}
+
+    .summary-row:last-of-type {
+        border-bottom: none;
+    }
+
+.summary-key {
+    font-weight: 700;
+    color: #8B5E3C;
+    font-size: 0.95rem;
+}
+
+.summary-val {
+    font-weight: 800;
+    color: #5C3D1E;
+    font-size: 0.95rem;
+}
+
+.discount-val {
+    color: #27ae60 !important;
+}
+
+.summary-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFF8EE;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-top: 12px;
+}
+
+.summary-total-label {
+    font-weight: 800;
+    color: #8B5E3C;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.summary-total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #D4880E;
+}
+
+/* BUTTON */
+.receipt-actions {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.btn-continue {
+    display: inline-block;
+    background: #F5A623;
+    color: #5C3D1E;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 48px;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+    .btn-continue:hover {
+        background: #D4880E;
+        color: #ffffff;
+        text-decoration: none;
+        transform: scale(1.02);
+    }
+
+@media (max-width: 768px) {
+    .receipt-wrapper {
+        margin: 24px auto;
+    }
+
+    .receipt-card {
+        padding: 20px;
+    }
+
+    .receipt-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-total-amount {
+        font-size: 1.4rem;
+    }
+}
