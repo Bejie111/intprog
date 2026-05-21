@@ -27,7 +27,7 @@ namespace BreadBee.Data
 
                 db.Products.AddRange(
 
-                    // ── BREAD ──
+                    // BREAD
                     new BreadBee.Models.Product
                     {
                         Name = "Cheese Bread",
@@ -35,7 +35,7 @@ namespace BreadBee.Data
                         Price = 25,
                         Stock = 100,
                         CategoryId = bread.Id,
-                        ImageUrl = "/images/cheesebread.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -44,7 +44,7 @@ namespace BreadBee.Data
                         Price = 8,
                         Stock = 200,
                         CategoryId = bread.Id,
-                        ImageUrl = "/images/pandesal.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -53,7 +53,7 @@ namespace BreadBee.Data
                         Price = 35,
                         Stock = 80,
                         CategoryId = bread.Id,
-                        ImageUrl = "/images/ensaymada.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -62,7 +62,7 @@ namespace BreadBee.Data
                         Price = 45,
                         Stock = 60,
                         CategoryId = bread.Id,
-                        ImageUrl = "/images/ubebread.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -71,7 +71,7 @@ namespace BreadBee.Data
                         Price = 15,
                         Stock = 120,
                         CategoryId = bread.Id,
-                        ImageUrl = "/images/spanishbread.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -80,10 +80,10 @@ namespace BreadBee.Data
                         Price = 12,
                         Stock = 90,
                         CategoryId = bread.Id,
-                        ImageUrl = "/images/monay.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400"
                     },
 
-                    // ── DONUT ──
+                    // DONUT
                     new BreadBee.Models.Product
                     {
                         Name = "Chocolate Donut",
@@ -91,7 +91,7 @@ namespace BreadBee.Data
                         Price = 30,
                         Stock = 50,
                         CategoryId = donut.Id,
-                        ImageUrl = "/images/donut.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -100,7 +100,7 @@ namespace BreadBee.Data
                         Price = 28,
                         Stock = 60,
                         CategoryId = donut.Id,
-                        ImageUrl = "/images/glazeddonut.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -109,10 +109,10 @@ namespace BreadBee.Data
                         Price = 32,
                         Stock = 45,
                         CategoryId = donut.Id,
-                        ImageUrl = "/images/strawberrydonut.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"
                     },
 
-                    // ── PASTRY ──
+                    // PASTRY
                     new BreadBee.Models.Product
                     {
                         Name = "Croissant",
@@ -120,7 +120,7 @@ namespace BreadBee.Data
                         Price = 40,
                         Stock = 70,
                         CategoryId = pastry.Id,
-                        ImageUrl = "/images/croissant.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -129,7 +129,7 @@ namespace BreadBee.Data
                         Price = 55,
                         Stock = 40,
                         CategoryId = pastry.Id,
-                        ImageUrl = "/images/cinnamonroll.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -138,10 +138,10 @@ namespace BreadBee.Data
                         Price = 50,
                         Stock = 55,
                         CategoryId = pastry.Id,
-                        ImageUrl = "/images/hampuff.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400"
                     },
 
-                    // ── MUFFIN ──
+                    // MUFFIN
                     new BreadBee.Models.Product
                     {
                         Name = "Blueberry Muffin",
@@ -149,7 +149,7 @@ namespace BreadBee.Data
                         Price = 38,
                         Stock = 50,
                         CategoryId = muffin.Id,
-                        ImageUrl = "/images/blueberrymuffin.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -158,10 +158,10 @@ namespace BreadBee.Data
                         Price = 38,
                         Stock = 50,
                         CategoryId = muffin.Id,
-                        ImageUrl = "/images/chocchipmuffin.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400"
                     },
 
-                    // ── LOAF ──
+                    // LOAF
                     new BreadBee.Models.Product
                     {
                         Name = "Sourdough Loaf",
@@ -169,7 +169,7 @@ namespace BreadBee.Data
                         Price = 120,
                         Stock = 30,
                         CategoryId = loaf.Id,
-                        ImageUrl = "/images/sourdough.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1586444248897-a00f00d4a2c7?w=400"
                     },
                     new BreadBee.Models.Product
                     {
@@ -178,7 +178,7 @@ namespace BreadBee.Data
                         Price = 95,
                         Stock = 35,
                         CategoryId = loaf.Id,
-                        ImageUrl = "/images/bananaloaf.jpg"
+                        ImageUrl = "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400"
                     }
                 );
                 db.SaveChanges();

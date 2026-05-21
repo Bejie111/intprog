@@ -3,24 +3,327 @@
     Layout = "_UserLayout";
 }
 
-<h1>BreadBee Products</h1>
+<link href="https://fonts.googleapis.com
+/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- FILTER SECTION -->
-<form method="get" class="mb-3">
+<style>
+    :root {
+        --amber: #F5A623;
+        --amber-dark: #D4880E;
+        --amber-light: #FFC85C;
+        --cream: #FFF8EE;
+        --brown: #5C3D1E;
+        --brown-light: #8B5E3C;
+        --white: #ffffff;
+        --shadow: 0 8px 32px rgba(92,61,30,0.12);
+        --shadow-hover: 0 16px 48px rgba(92,61,30,0.22);
+    }
 
+    body {
+        background: var(--cream) !important;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: var(--brown);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .filter-bar {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 18px 24px;
+        box-shadow: var(--shadow);
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+        .filter-bar .form-control {
+            border: 2px solid #f0e8d8 !important;
+            border-radius: 30px !important;
+            padding: 9px 18px !important;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.92rem;
+            background: var(--cream) !important;
+            transition: border-color .2s;
+        }
+
+            .filter-bar .form-control:focus {
+                border-color: var(--amber) !important;
+                box-shadow: 0 0 0 3px rgba(245,166,35,0.15) !important;
+                outline: none;
+            }
+
+    .btn-apply {
+        background: var(--amber);
+        color: var(--brown);
+        border: none;
+        border-radius: 30px;
+        padding: 10px 26px;
+        font-weight: 800;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.92rem;
+        cursor: pointer;
+        transition: all .2s ease;
+    }
+
+        .btn-apply:hover {
+            background: var(--amber-dark);
+            color: var(--white);
+        }
+
+    .btn-reset {
+        background: #e8e0d5;
+        color: var(--brown);
+        border: none;
+        border-radius: 30px;
+        padding: 10px 26px;
+        font-weight: 800;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.92rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: all .2s ease;
+    }
+
+        .btn-reset:hover {
+            background: #d5c9b8;
+            color: var(--brown);
+            text-decoration: none;
+        }
+
+    .discount-banner {
+        background: linear-gradient(135deg, var(--brown) 0%, #3a2010 100%);
+        border-radius: 20px;
+        padding: 24px 28px;
+        margin-bottom: 28px;
+        color: var(--white);
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        box-shadow: var(--shadow);
+    }
+
+    .discount-icon {
+        font-size: 2.2rem;
+        flex-shrink: 0;
+    }
+
+    .discount-banner h5 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-weight: 900;
+        color: var(--amber-light);
+        margin-bottom: 10px;
+    }
+
+    .discount-banner ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+        .discount-banner ul li {
+            background: rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+    .discount-banner small {
+        color: rgba(255,255,255,0.60);
+        font-size: 0.82rem;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 24px;
+    }
+
+    .product-card {
+        background: var(--white);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: all .30s cubic-bezier(.25,.8,.25,1);
+        display: flex;
+        flex-direction: column;
+    }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow-hover);
+        }
+
+    .product-img-wrap {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        background: #f5ede0;
+    }
+
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .40s ease;
+        }
+
+    .product-card:hover .product-img-wrap img {
+        transform: scale(1.08);
+    }
+
+    .product-cat-tag {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--amber);
+        color: var(--brown);
+        font-size: 10px;
+        font-weight: 800;
+        padding: 3px 10px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .product-body {
+        padding: 18px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .product-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--brown);
+        margin-bottom: 4px;
+    }
+
+    .product-desc {
+        font-size: 0.84rem;
+        color: var(--brown-light);
+        line-height: 1.5;
+        margin-bottom: 14px;
+        flex: 1;
+    }
+
+    .product-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+    }
+
+    .product-price {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: var(--amber-dark);
+    }
+
+    .product-stock {
+        font-size: 0.78rem;
+        color: var(--brown-light);
+        font-weight: 700;
+        background: #f5ede0;
+        padding: 3px 10px;
+        border-radius: 20px;
+    }
+
+    .btn-add-cart {
+        background: var(--amber);
+        color: var(--brown);
+        border: none;
+        border-radius: 30px;
+        padding: 11px 0;
+        font-weight: 800;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.9rem;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        transition: all .20s ease;
+    }
+
+        .btn-add-cart:hover {
+            background: var(--amber-dark);
+            color: var(--white);
+            text-decoration: none;
+            transform: scale(1.02);
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        color: var(--brown-light);
+    }
+
+        .empty-state .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--brown);
+            margin-bottom: 8px;
+        }
+
+    @@media (max-width: 768px)
+    {
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        .filter-bar {
+            gap: 8px;
+        }
+
+        .discount-banner ul {
+            flex-direction: column;
+            gap: 8px;
+        }
+    }
+</style>
+
+<!-- PAGE TITLE -->
+<div class="page-title">🍞 BreadBee Products</div>
+
+<!-- FILTER BAR -->
+<form method="get" class="filter-bar">
     <input type="text"
            name="search"
            value="@ViewBag.Search"
-           placeholder="Search bread, cake..."
+           placeholder="🔍 Search bread, cake..."
            class="form-control"
-           style="max-width:250px; display:inline-block;" />
-
+           style="max-width:240px;" />
     <select name="categoryId"
             class="form-control"
-            style="max-width:200px; display:inline-block;">
-
+            style="max-width:180px;">
         <option value="">All Categories</option>
-
         @foreach (var cat in ViewBag.Categories)
         {
             <option value="@cat.Id"
@@ -28,82 +331,64 @@
                 @cat.Name
             </option>
         }
-
     </select>
-
-    <button class="btn btn-primary">
-        Apply
-    </button>
-
-    <a asp-action="Products" class="btn btn-secondary">
-        Reset
-    </a>
-
+    <button type="submit" class="btn-apply">Apply</button>
+    <a asp-action="Products" class="btn-reset">Reset</a>
 </form>
 
-<!-- 🔥 DISCOUNT DEALS (ONLY LOGGED IN) -->
+<!-- DISCOUNT BANNER (logged in only) -->
 @if (ViewBag.IsLoggedIn == true)
 {
-    <div class="card mb-3 p-3 border-warning">
-
-        <h5>🔥 Bulk Discount Available</h5>
-
-        <ul class="mb-0">
-            <li>Buy 50 pcs → 5% discount</li>
-            <li>Buy 100 pcs → 10% discount</li>
-            <li>Buy 200+ pcs → 20% discount</li>
-        </ul>
-
-        <small class="text-muted">
-            Discount is automatically applied at checkout.
-        </small>
-
+    <div class="discount-banner">
+        <div class="discount-icon">🔥</div>
+        <div>
+            <h5>Bulk Discount Available!</h5>
+            <ul>
+                <li>🛒 Buy 50 pcs → 5% off</li>
+                <li>🛒 Buy 100 pcs → 10% off</li>
+                <li>🛒 Buy 200+ pcs → 20% off</li>
+            </ul>
+            <small>Discount is automatically applied at checkout.</small>
+        </div>
     </div>
 }
 
-<!-- PRODUCT LIST -->
-<div class="row">
-
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3 mb-4">
-
-            <div class="card shadow-sm border-0 h-100">
-
-                <img src="@item.ImageUrl"
-                     style="width:100px; height:100px; object-fit:cover;" />
-
-                <div class="card-body d-flex flex-column">
-
-                    <h5 class="card-title mb-1">@item.Name</h5>
-
-                    <p class="text-muted small mb-2">
-                        @item.Category?.Name
-                    </p>
-
-                    <p class="small flex-grow-1">
-                        @item.Description
-                    </p>
-
-                    <div class="mb-2">
-                        <strong>₱@item.Price</strong>
+<!-- PRODUCT GRID -->
+@if (Model != null && Model.Any())
+{
+    <div class="products-grid">
+        @foreach (var item in Model)
+        {
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <img src="@item.ImageUrl"
+                         alt="@item.Name"
+                         onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400'" />
+                    <span class="product-cat-tag">@item.Category?.Name</span>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">@item.Name</div>
+                    <div class="product-desc">@item.Description</div>
+                    <div class="product-meta">
+                        <div class="product-price">₱@item.Price.ToString("F2")</div>
+                        <div class="product-stock">Stock: @item.Stock</div>
                     </div>
-
-                    <small class="text-muted mb-3">
-                        Stock: @item.Stock
-                    </small>
-
                     <a asp-controller="Cart"
                        asp-action="Add"
                        asp-route-id="@item.Id"
-                       class="btn btn-warning w-100">
-                        Add to Cart
+                       class="btn-add-cart">
+                        🛒 Add to Cart
                     </a>
-
                 </div>
             </div>
-
-        </div>
-    }
-
-</div>
+        }
+    </div>
+}
+else
+{
+    <div class="empty-state">
+        <div class="empty-icon">🍞</div>
+        <h3>No products found</h3>
+        <p>Try adjusting your search or category filter.</p>
+    </div>
+}

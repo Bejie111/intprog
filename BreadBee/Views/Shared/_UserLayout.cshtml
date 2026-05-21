@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BreadBee</title>
     <script type="importmap"></script>
+    <link rel="stylesheet" href="~/css/cart.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BreadBee.styles.css" asp-append-version="true" />
@@ -31,83 +32,72 @@
         </div>
 
         <!-- CART SIDEBAR -->
-        <div style="width:320px; background:#f8f9fa; padding:15px; height:100vh; position:sticky; top:0;">
-            <h4>🛒 My Cart</h4>
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <span class="cart-header-icon">🛒</span>
+                <span class="cart-header-title">My Cart</span>
+            </div>
 
             @if (cart.Count == 0)
             {
-                <p>No items yet</p>
+                <div class="cart-empty">
+                    <div class="cart-empty-icon">🍞</div>
+                    <p>No items yet</p>
+                    <small>Add some fresh bread!</small>
+                </div>
             }
             else
             {
-                foreach (var item in cart)
-                {
-                    <div style="display:flex; margin-bottom:10px; align-items:center;">
-
-                        <img src="@item.ImageUrl"
-                             style="width:50px; height:50px; object-fit:cover; margin-right:10px;" />
-
-                        <div style="flex:1;">
-                            <strong>@item.ProductName</strong><br />
-
-                            ₱@(item.Price * item.Quantity)
-
-                            <div style="display:flex; align-items:center; gap:8px; margin-top:5px;">
-
-                                <a href="/Cart/Decrease?id=@item.ProductId"
-                                   class="btn btn-sm btn-outline-dark">
-                                    -
-                                </a>
-
-                                <span>@item.Quantity</span>
-
-                                <a href="/Cart/Increase?id=@item.ProductId"
-                                   class="btn btn-sm btn-outline-dark">
-                                    +
-                                </a>
-
+                <div class="cart-items">
+                    @foreach (var item in cart)
+                    {
+                        <div class="cart-item">
+                            <img src="@item.ImageUrl"
+                                 class="cart-item-img"
+                                 onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100'" />
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">@item.ProductName</div>
+                                <div class="cart-item-price">₱@(item.Price* item.Quantity)</div>
+                                <div class="cart-item-qty">
+                                    <a href="/Cart/Decrease?id=@item.ProductId" class="qty-btn">−</a>
+                                    <span class="qty-num">@item.Quantity</span>
+                                    <a href="/Cart/Increase?id=@item.ProductId" class="qty-btn">+</a>
+                                </div>
                             </div>
+                            <a href="/Cart/Remove?id=@item.ProductId" class="cart-item-remove">✕</a>
                         </div>
+                    }
+                </div>
 
-                        <a href="/Cart/Remove?id=@item.ProductId"
-                           style="color:red; font-weight:bold; margin-left:10px;">
-                            ✖
+                <div class="cart-divider"></div>
+
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span class="cart-total-amount">₱@cartTotal</span>
+                </div>
+
+                <div class="cart-actions">
+                    @if (cart.Count > 0)
+                    {
+                        <a asp-controller="Cart"
+                           asp-action="CheckOut"
+                           class="btn-checkout">
+                            🧾 Checkout
                         </a>
+                    }
+                    else
+                    {
+                        <a class="btn-checkout disabled">🧾 Checkout</a>
+                    }
 
-                    </div>
-                }
-
-                <hr />
-
-                <h5>Total: ₱@cartTotal</h5>
-
-                @if (cart.Count > 0)
-                {
                     <a asp-controller="Cart"
-                       asp-action="CheckOut"
-                       class="btn btn-success w-100">
-                        Checkout
+                       asp-action="Clear"
+                       class="btn-clear">
+                        🗑️ Clear Cart
                     </a>
-                }
-                else
-                {
-                    <a class="btn btn-success w-100 disabled" tabindex="-1" aria-disabled="true">Checkout</a>
-                }
-                
-                <a asp-controller="Cart"
-                   asp-action="Clear"
-                   class="btn btn-danger w-100 mb-2">
-                    Clear Cart
-                </a>
+                </div>
             }
         </div>
-
-    </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - BreadBee - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
