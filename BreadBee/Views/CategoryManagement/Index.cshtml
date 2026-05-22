@@ -31,7 +31,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Category Name</th>
-                    <th>Product Count</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -47,12 +46,6 @@
                                 <div class="category-icon">📁</div>
                                 <span class="category-name">@c.Name</span>
                             </div>
-                        </td>
-                        <td>
-                            <span class="product-count-badge">
-                                <i class="bi bi-basket3-fill"></i>
-                                @(c.Products?.Count() ?? 0) products
-                            </span>
                         </td>
                         <td class="text-center">
                             <div class="action-btns">

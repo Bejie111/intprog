@@ -1,6 +1,7 @@
 ﻿using BreadBee.Data;
 using BreadBee.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query;
 using System.CodeDom.Compiler;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -130,12 +131,14 @@ namespace BreadBee.Controllers
             // DISCOUNT RULE (only for logged-in users)
             if (userId != null)
             {
-                if (qty >= 100)
+                if (qty >= 200)
+                    discount = subtotal * 0.40m;
+                else if (qty >= 100)
                     discount = subtotal * 0.20m;
                 else if (qty >= 50)
                     discount = subtotal * 0.10m;
                 else
-                    discount = subtotal * 0.05m;
+                    discount = 0;
             }
 
             var user = userId != null

@@ -1,55 +1,36 @@
 # BreadBee
 
-Simple ASP.NET Core (.NET 10) e-commerce sample (MVC controllers + Razor views) for a bakery storefront with cart/session support and database seeding.
+BreadBee is a small ASP.NET Core (.NET 10) bakery storefront sample using MVC controllers with Razor views. It demonstrates a simple product catalog, session-based shopping cart, checkout flow, and EF Core-backed persistence with initial seeding.
 
-## Features
-- Product catalog (Products, Categories)
-- Shopping cart stored in session, sidebar cart UI and Checkout flow
-- Orders with order items and discounts for logged-in users
-- Basic user model with seeded admin account
-- EF Core migrations + database seeding on startup
-- Static assets (wwwroot) with Bootstrap & jQuery
+## Quick overview
+- MVC controllers + Razor views
+- EF Core (SQL Server) with migrations
+- Session-backed shopping cart and sidebar UI
+- Simple Order and User models with seeded admin user
 
 ## Prerequisites
 - .NET 10 SDK
-- SQL Server (LocalDB or other accessible SQL Server instance)
-- Optional: dotnet-ef tool for applying migrations (install with `dotnet tool install --global dotnet-ef`)
+- SQL Server or LocalDB
+- (Optional) dotnet-ef tool for migrations
 
-## Quick start (development)
-1. Clone repository
-   git clone https://github.com/Bejie111/intprog
-2. Configure database
-   - Open `appsettings.json` and set `ConnectionStrings:DefaultConnection` to a valid SQL Server connection string. Example:
-	 `Server=(localdb)\\mssqllocaldb;Database=BreadBeeDb;Trusted_Connection=True;MultipleActiveResultSets=true`
-3. Restore and build
-   dotnet restore
-   dotnet build
-4. Apply EF migrations (optional)
-   dotnet ef database update
-   The app also runs seed logic at startup to insert sample categories, products, and a default admin user.
-5. Run the app
-   dotnet run
-6. Open the URL printed by the app (usually http://localhost:5000 or http://localhost:5218)
+## Setup & run (development)
+1. Clone: git clone https://github.com/Bejie111/intprog
+2. Update connection string: open `appsettings.json` and set `ConnectionStrings:DefaultConnection`.
+   Example: `Server=(localdb)\\mssqllocaldb;Database=BreadBeeDb;Trusted_Connection=True;MultipleActiveResultSets=true`
+3. Restore & build: `dotnet restore` && `dotnet build`
+4. (Optional) Apply migrations: `dotnet ef database update`
+   - The app also seeds sample categories, products and an admin user on startup via `SeedData`.
+5. Run: `dotnet run` (or run from Visual Studio). Browse to the URL printed by the app.
 
-## Seed data / credentials
-- Seeded sample admin user (development only):
-  - Email: `admin@gmail.com`
-  - Password: `123`
-- Seeded sample categories and products are added on first run.
+## Seeded data (development)
+- Admin: `admin@gmail.com` / `123` (development only)
+- Sample categories and products are inserted automatically on first run.
 
-## Notes & TODOs
-- Passwords are stored in plaintext for the sample. Replace with proper hashing before any real deployment.
-- PhoneNumber is required on the User model; the seed uses a placeholder value. Consider making it optional or prompting for a real value.
-- Sessions are used for the cart. Ensure cookies are enabled in the browser when testing.
+## Key files
+- `Program.cs` - startup, middleware and seeding
+- `Data/BreadBeeDbContext.cs` - EF Core DbContext
+- `Data/SeedData.cs` - seed logic
+- `Controllers/` - MVC controllers (Cart, Product, Account, etc.)
+- `Views/` - Razor views and shared layouts
+- `wwwroot/` - static assets (css, js, images)
 
-## Important files
-- `Program.cs` — app startup, middleware, and seeding
-- `Data/BreadBeeDbContext.cs` — EF Core DbContext
-- `Data/SeedData.cs` — seeding logic
-- `Controllers/` — MVC controllers (Home, Product, Cart, Account, Admin, etc.)
-- `Views/` — Razor views and shared layouts
-- `wwwroot/` — static assets (css, js, images)
-- `Models/` — domain models: Product, Category, User, Cart, Order, OrderItem
-
-## Contributing
-Fork, create a branch, add tests where applicable, open a pull request.
