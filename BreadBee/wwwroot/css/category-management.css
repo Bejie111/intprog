@@ -1,0 +1,284 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* HEADER */
+.cm-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.cm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #1a1d27;
+    margin-bottom: 4px;
+}
+
+.cm-subtitle {
+    font-size: 0.88rem;
+    color: #8a96a8;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* ADD CATEGORY BUTTON */
+.btn-add-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #F5A623, #D4880E);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: all .22s ease;
+    box-shadow: 0 4px 14px rgba(245,166,35,0.30);
+}
+
+    .btn-add-category:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(245,166,35,0.40);
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+/* TABLE CARD */
+.cm-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid #f0f2f5;
+}
+
+.cm-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid #f5f7fa;
+}
+
+.cm-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #1a1d27;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .cm-card-title i {
+        color: #F5A623;
+    }
+
+.cm-count {
+    background: #f8f9fb;
+    border: 1px solid #e8ecf0;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #8a96a8;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* TABLE */
+.table-wrap {
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+    .table-wrap::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .table-wrap::-webkit-scrollbar-track {
+        background: #f8f9fa;
+    }
+
+    .table-wrap::-webkit-scrollbar-thumb {
+        background: #e0e4ea;
+        border-radius: 4px;
+    }
+
+.cm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Nunito', sans-serif;
+}
+
+    .cm-table thead tr {
+        background: #f8f9fb;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+    }
+
+    .cm-table thead th {
+        padding: 14px 18px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: #8a96a8;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        border: none;
+        border-bottom: 1px solid #f0f2f5;
+    }
+
+.cm-row {
+    border-bottom: 1px solid #f5f7fa;
+    transition: background .18s ease;
+}
+
+    .cm-row:hover {
+        background: #fafbfc;
+    }
+
+.cm-table tbody td {
+    padding: 16px 18px;
+    font-size: 0.90rem;
+    color: #3d4a5c;
+    font-weight: 600;
+    border: none;
+    vertical-align: middle;
+}
+
+/* ID BADGE */
+.id-badge {
+    background: #f8f9fb;
+    border: 1px solid #e8ecf0;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #8a96a8;
+}
+
+/* CATEGORY CELL */
+.category-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.category-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(245,166,35,0.10);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(245,166,35,0.20);
+}
+
+.category-name {
+    font-weight: 800;
+    color: #1a1d27;
+    font-size: 0.95rem;
+}
+
+/* PRODUCT COUNT BADGE */
+.product-count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(99,102,241,0.08);
+    color: #4f46e5;
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.80rem;
+    font-weight: 800;
+}
+
+    .product-count-badge i {
+        font-size: 0.75rem;
+    }
+
+/* ACTION BUTTONS */
+.action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-edit {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(245,166,35,0.12);
+    color: #D4880E;
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.80rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all .2s ease;
+    font-family: 'Nunito', sans-serif;
+}
+
+    .btn-edit:hover {
+        background: #F5A623;
+        color: #ffffff;
+        border-color: #F5A623;
+        text-decoration: none;
+    }
+
+.btn-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(239,68,68,0.10);
+    color: #e74c3c;
+    border: 1px solid rgba(239,68,68,0.20);
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.80rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all .2s ease;
+    font-family: 'Nunito', sans-serif;
+}
+
+    .btn-delete:hover {
+        background: #e74c3c;
+        color: #ffffff;
+        border-color: #e74c3c;
+        text-decoration: none;
+    }
+
+@media (max-width: 768px) {
+    .cm-header {
+        flex-direction: column;
+    }
+
+    .cm-title {
+        font-size: 1.5rem;
+    }
+
+    .cm-table thead th,
+    .cm-table tbody td {
+        padding: 10px 12px;
+        font-size: 0.80rem;
+    }
+
+    .action-btns {
+        flex-direction: column;
+        gap: 4px;
+    }
+}

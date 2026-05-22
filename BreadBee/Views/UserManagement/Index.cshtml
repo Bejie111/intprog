@@ -1,60 +1,111 @@
 ﻿@model List<BreadBee.Models.User>
-
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>👤 User Management</h2>
+<link rel="stylesheet" href="~/css/user-management.css" />
 
-<!-- SEARCH -->
-<form method="get" class="mb-3">
-    <input type="text" name="search"
-           placeholder="Search user..."
-           class="form-control"
-           style="max-width:300px; display:inline-block;" />
+<!-- HEADER -->
+<div class="um-header">
+    <div>
+        <div class="um-title">👤 User Management</div>
+        <div class="um-subtitle">Manage registered users and their roles</div>
+    </div>
+    <div class="um-count-badge">
+        <i class="bi bi-people-fill"></i> @Model.Count users
+    </div>
+</div>
 
-    <button class="btn btn-primary">Search</button>
+<!-- SEARCH BAR -->
+<form method="get" class="um-search-bar">
+    <div class="search-input-wrap">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text"
+               name="search"
+               value="@ViewBag.Search"
+               placeholder="Search user name or email..."
+               class="search-input" />
+    </div>
+    <button type="submit" class="btn-search">Search</button>
 </form>
 
-<table class="table table-bordered table-striped">
+<!-- TABLE CARD -->
+<div class="um-card">
+    <div class="um-card-header">
+        <span class="um-card-title">
+            <i class="bi bi-people-fill"></i> All Users
+        </span>
+    </div>
 
-    <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.Id</td>
-                <td>@user.FullName</td>
-                <td>@user.Email</td>
-                <td>@user.PhoneNumber</td>
-                <td>@user.Role</td>
-
-                <td>
-                    <a asp-action="EditRole"
-                       asp-route-id="@user.Id"
-                       class="btn btn-warning btn-sm">
-                        Edit Role
-                    </a>
-
-                    <a asp-action="Delete"
-                       asp-route-id="@user.Id"
-                       class="btn btn-danger btn-sm"
-                       onclick="return confirm('Delete this user?')">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-
-</table>
+    <div class="table-wrap">
+        <table class="um-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr class="um-row">
+                        <td>
+                            <span class="id-badge">#@user.Id</span>
+                        </td>
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar">
+                                    @user.FullName[0].ToString().ToUpper()
+                                </div>
+                                <span class="user-name">@user.FullName</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="email-cell">
+                                <i class="bi bi-envelope-fill"></i> @user.Email
+                            </span>
+                        </td>
+                        <td>
+                            <span class="phone-cell">
+                                <i class="bi bi-telephone-fill"></i> @user.PhoneNumber
+                            </span>
+                        </td>
+                        <td>
+                            @if (user.Role == "Admin")
+                            {
+                                <span class="role-tag admin-tag">
+                                    <i class="bi bi-shield-fill"></i> Admin
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="role-tag customer-tag">
+                                    <i class="bi bi-person-fill"></i> Customer
+                                </span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <div class="action-btns">
+                                <a asp-action="EditRole"
+                                   asp-route-id="@user.Id"
+                                   class="btn-edit">
+                                    <i class="bi bi-pencil-fill"></i> Edit Role
+                                </a>
+                                <a asp-action="Delete"
+                                   asp-route-id="@user.Id"
+                                   class="btn-delete"
+                                   onclick="return confirm('Delete this user?')">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

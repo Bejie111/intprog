@@ -1,72 +1,99 @@
 ﻿@model List<BreadBee.Models.Product>
-
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>🍞 Product Management</h2>
+<link rel="stylesheet" href="~/css/product-management.css" />
 
-<form method="get" class="mb-3">
+<!-- HEADER -->
+<div class="pm-header">
+    <div>
+        <div class="pm-title">🍞 Product Management</div>
+        <div class="pm-subtitle">Manage your bread products, prices, and stock</div>
+    </div>
+    <a asp-action="Create" class="btn-add-product">
+        <i class="bi bi-plus-lg"></i> Add Product
+    </a>
+</div>
 
-    <input type="text"
-           name="search"
-           value="@ViewBag.Search"
-           placeholder="Search product..."
-           class="form-control"
-           style="max-width:300px; display:inline-block;" />
-
-    <button class="btn btn-primary">
-        Search
-    </button>
-
+<!-- SEARCH BAR -->
+<form method="get" class="pm-search-bar">
+    <div class="search-input-wrap">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text"
+               name="search"
+               value="@ViewBag.Search"
+               placeholder="Search product name..."
+               class="search-input" />
+    </div>
+    <button type="submit" class="btn-search">Search</button>
 </form>
-<a asp-action="Create" class="btn btn-primary mb-3">
-    + Add Product
-</a>
 
-<div style="max-height:500px; overflow-y:auto; border:1px solid #ddd;">
-    <table class="table table-bordered table-striped mb-0">
+<!-- TABLE CARD -->
+<div class="pm-card">
+    <div class="pm-card-header">
+        <span class="pm-card-title">
+            <i class="bi bi-basket3-fill"></i> All Products
+        </span>
+        <span class="pm-count">@Model.Count items</span>
+    </div>
 
-        <thead class="table-dark">
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var p in Model)
-            {
+    <div class="table-wrap">
+        <table class="pm-table">
+            <thead>
                 <tr>
-                    <td>
-                        <img src="@p.ImageUrl"
-                             style="width:60px; height:60px; object-fit:cover;" />
-                    </td>
-
-                    <td>@p.Name</td>
-                    <td>@p.Category?.Name</td>
-                    <td>₱@p.Price</td>
-                    <td>@p.Stock</td>
-
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@p.Id"
-                           class="btn btn-warning btn-sm">
-                            Edit
-                        </a>
-
-                        <a asp-action="Delete" asp-route-id="@p.Id"
-                           class="btn btn-danger btn-sm"
-                           onclick="return confirm('Delete product?')">
-                            Delete
-                        </a>
-                    </td>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th class="text-center">Actions</th>
                 </tr>
-            }
-        </tbody>
-
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr class="pm-row">
+                        <td>
+                            <div class="product-img-wrap">
+                                <img src="@p.ImageUrl"
+                                     alt="@p.Name"
+                                     onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100'" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-name-cell">@p.Name</div>
+                        </td>
+                        <td>
+                            <span class="category-tag">@p.Category?.Name</span>
+                        </td>
+                        <td>
+                            <span class="price-cell">₱@p.Price.ToString("F2")</span>
+                        </td>
+                        <td>
+                            <span class="stock-cell @(p.Stock < 20 ? "low-stock" : "")">
+                                @if (p.Stock < 20)
+                                {
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                }
+                                @p.Stock
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <div class="action-btns">
+                                <a asp-action="Edit" asp-route-id="@p.Id" class="btn-edit">
+                                    <i class="bi bi-pencil-fill"></i> Edit
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@p.Id"
+                                   class="btn-delete"
+                                   onclick="return confirm('Delete this product?')">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
