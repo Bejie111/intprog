@@ -18,7 +18,6 @@ namespace BreadBee.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
         public IActionResult Login(string email, string password)
         {
             var user = _context.Users
@@ -52,21 +51,35 @@ namespace BreadBee.Controllers
             return RedirectToAction("Products", "Product");
         }
 
+        [HttpPost]
         public IActionResult Register(User user)
         {
-            if (string.IsNullOrEmpty(user.FullName) ||
-               string.IsNullOrEmpty(user.Email) ||
-               string.IsNullOrEmpty(user.Password) ||
-               string.IsNullOrEmpty(user.PhoneNumber))
+            if (!ModelState.IsValid)
             {
-                ViewBag.Error = "All fields are required";
-                return View();
+                TempData["RegisterError"] = "Invalid Register";
+
+                return RedirectToAction("Products", "Product");
             }
+
+            // OPTIONAL: prevent duplicate email
+            var existingUser = _context.Users
+                .FirstOrDefault(u => u.Email == user.Email);
+
+            if (existingUser != null)
+            {
+                TempData["RegisterError"] = "Email already exists.";
+
+                return RedirectToAction("Products", "Product");
+            }
+
             user.Role = "Customer";
 
             _context.Users.Add(user);
             _context.SaveChanges();
-            return RedirectToAction("Products","Product");
+
+            TempData["Success"] = "Account created successfully.";
+
+            return RedirectToAction("Products", "Product");
         }
     }
 }

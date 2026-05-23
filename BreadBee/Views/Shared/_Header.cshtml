@@ -181,6 +181,12 @@
                             </button>
 
                         </form>
+                        @if (TempData["RegisterError"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                @TempData["RegisterError"]
+                            </div>
+                        }
 
                     </div>
 
@@ -203,6 +209,26 @@
             );
 
             modal.show();
+        };
+    </script>
+}
+@if (TempData["RegisterError"] != null)
+{
+    <script>
+        window.onload = function () {
+
+            var modal = new bootstrap.Modal(
+                document.getElementById('authModal')
+            );
+
+            modal.show();
+
+            // OPEN REGISTER TAB
+            var registerTab = new bootstrap.Tab(
+                document.querySelector('[data-bs-target="#registerTab"]')
+            );
+
+            registerTab.show();
         };
     </script>
 }
